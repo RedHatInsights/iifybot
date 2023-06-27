@@ -144,7 +144,7 @@ def rhsa_data_parser(rhsa_results, list_of_cves):
     results = []
     for cve in list_of_cves:
         for r in rhsa_results:
-            if "bugzilla" in r.keys() and str(r["bugzilla"]["description"]).startswith(cve):
+            if "name" in r.keys():
                 if "affected_release" in r.keys():
                     for data in r["affected_release"]:
                         if data["product_name"] == "Red Hat Enterprise Linux 8":
