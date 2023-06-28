@@ -61,7 +61,7 @@ async def is_it_fixed_yet_preflight_check(results, client, body):
             await client.files_upload(
                 channels=body["channel_id"],
                 initial_comment=slack_comment,
-                file="./iify_results.pdf",
+                file="/tmp/iify_results.pdf",
                 title="iify_results.pdf",
                 filename="iify_results.pdf",
                 filetype="pdf",
@@ -70,7 +70,7 @@ async def is_it_fixed_yet_preflight_check(results, client, body):
             await client.files_upload(
                 channels=body["user_id"],
                 initial_comment=slack_comment,
-                file="./iify_results.pdf",
+                file="/tmp/iify_results.pdf",
                 title="iify_results.pdf",
                 filename="iify_results.pdf",
                 filetype="pdf",
@@ -257,14 +257,14 @@ def rhsa_results_output(rhsa_parsed_results, list_of_cves):
     <pre style="font-family:DejaVu Sans Mono"><font size="2">{code}</font></pre>\n    </code>\n</body>\n</html>\n'
 
     console.save_html(
-        path="./iify_results.html",
+        path="/tmp/iify_results.html",
         code_format=html_template,
     )
     try:
         config = pdfkit.configuration(wkhtmltopdf="/usr/bin/wkhtmltopdf")
-        pdfkit.from_file("iify_results.html", "iify_results.pdf", configuration=config)
+        pdfkit.from_file("/tmp/iify_results.html", "/tmp/iify_results.pdf", configuration=config)
     except OSError:
-        pdfkit.from_file("iify_results.html", "iify_results.pdf")
+        pdfkit.from_file("/tmp/iify_results.html", "/tmp/iify_results.pdf")
 
 
 def get_newest_image_id(image_name):
@@ -334,7 +334,7 @@ def write_catalog_rpm_file(image_name, rpm_data, image_creation_date, image_tag)
         "============================================================\n\n"
     )
     results += rpm_data
-    with open("rpm_lookup.txt", "w") as f:
+    with open("/tmp/rpm_lookup.txt", "w") as f:
         f.write(results)
 
 
@@ -347,7 +347,7 @@ async def sbom_preflight_check(text, client, body):
         await client.files_upload(
             channels=body["channel_id"],
             initial_comment=slack_comment,
-            file="./rpm_lookup.txt",
+            file="/tmp/rpm_lookup.txt",
             title="rpm_lookup.txt",
             filename="rpm_lookup.txt",
         )
@@ -355,7 +355,7 @@ async def sbom_preflight_check(text, client, body):
         await client.files_upload(
             channels=body["user_id"],
             initial_comment=slack_comment,
-            file="./rpm_lookup.txt",
+            file="/tmp/rpm_lookup.txt",
             title="rpm_lookup.txt",
             filename="rpm_lookup.txt",
         )

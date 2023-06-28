@@ -18,4 +18,5 @@ RUN pip3 install --no-cache-dir --upgrade pip pipenv && \
 
 EXPOSE 5000
 
+
 CMD ["python", "./main.py"]
