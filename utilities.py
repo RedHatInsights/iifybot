@@ -149,7 +149,8 @@ def rhsa_data_parser(rhsa_results, list_of_cves):
                     for data in r["affected_release"]:
                         if data["product_name"] == "Red Hat Enterprise Linux 8":
                             parsed_string = (
-                                f'\n {r["name"]} {r["bugzilla"]["description"]}\n'
+                                f'\n{r["name"]}\n'
+                                f'  > DESCRIPTION:  {r["bugzilla"]["description"]}\n'
                                 f'  > PRODUCT NAME: {data["product_name"]}\n'
                                 f"  > RED HAT FIX STATE: Fixed\n"
                                 f'  > RED HAT FIXED PACKAGE: {data["package"]}\n'
@@ -168,7 +169,8 @@ def rhsa_data_parser(rhsa_results, list_of_cves):
                     for data in r["package_state"]:
                         if data["product_name"] == "Red Hat Enterprise Linux 8":
                             parsed_string = (
-                                f'\n{r["name"]} {r["bugzilla"]["description"]}\n'
+                                f'\n{r["name"]}\n'
+                                f'  > DESCRIPTION: {r["bugzilla"]["description"]}\n'
                                 f'  > PRODUCT NAME: {data["product_name"]}\n'
                                 f'  > RED HAT FIX STATE: {data["fix_state"]}\n'
                                 f'  > RED HAT PACKAGE: {data["package_name"]}\n'
