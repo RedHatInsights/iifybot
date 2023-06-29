@@ -144,13 +144,13 @@ def rhsa_data_parser(rhsa_results, list_of_cves):
     results = []
     for cve in list_of_cves:
         for r in rhsa_results:
-            if "name" in r.keys() and str(r["name"])== cve:
+            if "name" in r.keys():
                 if "affected_release" in r.keys():
                     for data in r["affected_release"]:
                         if data["product_name"] == "Red Hat Enterprise Linux 8":
                             parsed_string = (
                                 f'\n{r["name"]}\n'
-                                f'  > DESCRIPTION:  {r["bugzilla"]["description"]}\n'
+                                f'  > DESCRIPTION: {r["bugzilla"]["description"]}\n'
                                 f'  > PRODUCT NAME: {data["product_name"]}\n'
                                 f"  > RED HAT FIX STATE: Fixed\n"
                                 f'  > RED HAT FIXED PACKAGE: {data["package"]}\n'
